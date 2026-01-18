@@ -14,6 +14,9 @@ export interface MatchOpponent {
     id: string;
     score: number;
     placement: number; // 1 for winner, 2 for loser (usually)
+    match2players?: {
+        race?: string;
+    }[];
     player?: {
         id: string;
         name: string;

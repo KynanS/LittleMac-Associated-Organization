@@ -1,48 +1,61 @@
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, LabelList } from 'recharts';
 
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
-import type { RaceStats } from '../../lib/analytics';
-
-const COLORS = {
-    Terran: '#ef233c', // Redish
-    Zerg: '#8338ec',   // Purple/Zerg-y
-    Protoss: '#fb8500',// Golden/Orange
-    Random: '#2b2d42', // Dark
-};
-
-interface WinRateChartProps {
-    stats: RaceStats;
+interface WinRateData {
+    race: string;
+    winRate: number;
+    wins: number;
+    losses: number;
 }
 
-export function WinRateChart({ stats }: WinRateChartProps) {
-    const data = [
-        { name: 'Terran', value: stats.Terran },
-        { name: 'Zerg', value: stats.Zerg },
-        { name: 'Protoss', value: stats.Protoss },
-        { name: 'Random', value: stats.Random },
-    ].filter(d => d.value > 0);
+interface WinRateChartProps {
+    stats: WinRateData[];
+}
 
+const getRaceColor = (race: string) => {
+    if (race === 'Terran') return 'hsl(var(--terran))';
+    if (race === 'Zerg') return 'hsl(var(--zerg))';
+    if (race === 'Protoss') return 'hsl(var(--protoss))';
+    return '#888';
+};
+
+export function WinRateChart({ stats }: WinRateChartProps) {
     return (
-        <div className="h-[300px] w-full">
-            <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                    <Pie
-                        data={data}
-                        cx="50%"
-                        cy="50%"
-                        innerRadius={60}
-                        outerRadius={80}
-                        paddingAngle={5}
-                        dataKey="value"
-                    >
-                        {data.map((entry) => (
-                            <Cell key={`cell-${entry.name}`} fill={COLORS[entry.name as keyof typeof COLORS]} />
-                        ))}
-                    </Pie>
-                    <Tooltip
-                        contentStyle={{ backgroundColor: '#1f2937', borderColor: '#374151', color: '#f3f4f6' }}
+        <div className="h-[300px] w-full rounded-xl border border-border bg-card p-4 shadow-sm">
+            <h3 className="text-lg font-semibold mb-2 text-center text-foreground">Win Rates by Faction</h3>
+            <ResponsiveContainer width="100%" height="85%">
+                <BarChart
+                    data={stats}
+                    layout="vertical"
+                    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                >
+                    <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="hsl(var(--border))" />
+                    <XAxis type="number" domain={[0, 100]} hide />
+                    <YAxis
+                        dataKey="race"
+                        type="category"
+                        width={60}
+                        tick={{ fill: 'hsl(var(--muted-foreground))' }}
+                        axisLine={false}
+                        tickLine={false}
                     />
-                    <Legend verticalAlign="bottom" height={36} />
-                </PieChart>
+                    <Tooltip
+                        cursor={{ fill: 'hsl(var(--muted)/0.2)' }}
+                        contentStyle={{ backgroundColor: 'hsl(var(--popover))', borderColor: 'hsl(var(--border))', color: 'hsl(var(--popover-foreground))', borderRadius: '8px' }}
+                        itemStyle={{ color: 'hsl(var(--foreground))' }}
+                        formatter={(value: any) => [`${value}%`, 'Win Rate'] as any}
+                    />
+                    <Bar dataKey="winRate" radius={[0, 4, 4, 0]}>
+                        {stats.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={getRaceColor(entry.race)} />
+                        ))}
+                        <LabelList
+                            dataKey="winRate"
+                            position="right"
+                            fill="hsl(var(--foreground))"
+                            formatter={(val: any) => `${val}%` as any}
+                        />
+                    </Bar>
+                </BarChart>
             </ResponsiveContainer>
         </div>
     );

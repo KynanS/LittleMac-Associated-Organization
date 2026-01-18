@@ -53,6 +53,7 @@ function generateMockMatches(count: number): LiquipediaMatch[] {
         match2id: `mock-${i}`,
         date: new Date(Date.now() - i * 86400000).toISOString(),
         tournament: 'Mock Tournament 2025',
+        pagename: 'Mock_Tournament_2025', // Added
         resulttype: 'single',
         bestof: 3,
         match2opponents: [
@@ -61,7 +62,7 @@ function generateMockMatches(count: number): LiquipediaMatch[] {
                 id: 'player-a',
                 score: 2,
                 placement: 1,
-                match2players: [{ race: 't' }],
+                match2players: [{ race: 't', name: 'Player A', displayname: 'Player A' }],
                 player: { id: 'p1', name: 'Player A', nationality: 'KR' }
             },
             {
@@ -69,7 +70,7 @@ function generateMockMatches(count: number): LiquipediaMatch[] {
                 id: 'player-b',
                 score: 1,
                 placement: 2,
-                match2players: [{ race: 'z' }],
+                match2players: [{ race: 'z', name: 'Player B', displayname: 'Player B' }],
                 player: { id: 'p2', name: 'Player B', nationality: 'FR' }
             }
         ],

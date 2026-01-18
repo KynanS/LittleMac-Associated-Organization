@@ -1,9 +1,9 @@
 
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
-import type { MapStat } from '../../lib/analytics';
+import type { MapStats } from '../../types/data';
 
 interface MapStatsProps {
-    data: MapStat[];
+    data: MapStats[];
 }
 
 export function MapStats({ data }: MapStatsProps) {
@@ -13,7 +13,7 @@ export function MapStats({ data }: MapStatsProps) {
                 <BarChart data={data} layout="vertical" margin={{ left: 40, right: 20 }}>
                     <XAxis type="number" hide />
                     <YAxis
-                        dataKey="name"
+                        dataKey="mapName"
                         type="category"
                         width={100}
                         tick={{ fill: '#9ca3af', fontSize: 12 }}
@@ -23,7 +23,7 @@ export function MapStats({ data }: MapStatsProps) {
                         cursor={{ fill: 'transparent' }}
                         contentStyle={{ backgroundColor: '#1f2937', borderColor: '#374151', color: '#f3f4f6' }}
                     />
-                    <Bar dataKey="value" fill="#3b82f6" radius={[0, 4, 4, 0]} />
+                    <Bar dataKey="totalGames" fill="#3b82f6" radius={[0, 4, 4, 0]} />
                 </BarChart>
             </ResponsiveContainer>
         </div>

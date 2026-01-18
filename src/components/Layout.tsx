@@ -19,7 +19,7 @@ export function Layout() {
                 <div className="container flex h-14 max-w-screen-2xl items-center justify-between px-4">
                     <div className="mr-4 flex">
                         <Link to="/" className="mr-6 flex items-center space-x-2">
-                            <span className="font-bold text-xl inline-block bg-gradient-to-r from-blue-400 to-purple-600 text-transparent bg-clip-text">
+                            <span className="font-bold text-xl inline-block bg-gradient-to-r from-terran via-zerg to-protoss text-transparent bg-clip-text">
                                 LMAO Analytics
                             </span>
                         </Link>
@@ -69,7 +69,7 @@ export function Layout() {
             <footer className="border-t py-6 md:px-8 md:py-0">
                 <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
                     <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-                        Built for the LittleMac Associated Organization. Data from <a href="https://liquipedia.net" target="_blank" rel="noreferrer" className="font-medium underline underline-offset-4">Liquipedia</a>.
+                        Built for the LittleMac Associated Organization. Data provided by <a href="https://liquipedia.net" target="_blank" rel="noreferrer" className="font-medium underline underline-offset-4">Liquipedia</a>.
                     </p>
                 </div>
             </footer>

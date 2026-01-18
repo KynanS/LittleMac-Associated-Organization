@@ -43,7 +43,7 @@ export function TournamentDashboard({ title, filterStr }: TournamentDashboardPro
             <div className="flex flex-col gap-2">
                 <h1 className="text-3xl font-bold tracking-tight">{title}</h1>
                 <p className="text-gray-400">
-                    Showing statistics for {matches.length} matches.
+                    Showing statistics for {matches.length} series.
                 </p>
             </div>
 

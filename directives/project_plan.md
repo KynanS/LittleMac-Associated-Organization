@@ -38,15 +38,18 @@ Since GitHub Pages is static, we use a **Build-Time Data Fetching** strategy.
 *   [x] **Skeleton UI**: `Layout.tsx` (Navbar/Footer) and `HomePage.tsx`.
 *   [x] **Routing**: `App.tsx` routes configured.
 *   [x] **Git**: Repo initialized and pushed to `LittleMac-Associated-Organization/sc2-analytics`.
+*   [x] **Analytics Engine**: `src/lib/analytics.ts` implemented with robust stats.
+*   [x] **Visualizations**: `WinRateChart`, `MapStats`, and `RaceDistributionChart` implemented.
+*   [x] **Tournament Pages**: `LMSLPage` and `LMMLPage` refactored to use `TournamentDashboard`.
+*   [x] **Player Profiles**: Dynamic routes for individual player history implemented.
 
 ### 🚧 In Progress (Next Steps)
-*   **Analytics Engine**: Processing the raw `matches.json` into usable stats.
-    *   *Need to create*: `src/lib/analytics.ts` (helper functions to calculate win rates, map stats).
-*   **Visualizations**:
-    *   `WinRateChart.tsx`
-    *   `MapStatsChart.tsx`
-*   **Tournament Pages**: Implementing `LMSLPage` and `LMMLPage` with real data.
-*   **Player Profiles**: Dynamic routes for individual player history.
+*   **Player Search**: Global search bar to find players and tournaments.
+*   **Advanced Player Stats**: Matchup-specific win rates (TvZ, TvP, etc.) and map performance on profile pages.
+*   **Visualizations**: Win-rate trends over time for players.
+*   **Comparisons**: Head-to-head player comparison tool.
+*   **Testing**: Value-add unit tests for analytics logic (`vitest`).
+*   **Accessibility & SEO**: Meta tags for social sharing (OpenGraph) and accessibility audit.
 
 ## 4. Key Directives for Agents
 When working on this project, adhere to these rules:

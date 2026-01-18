@@ -1,8 +1,6 @@
-
 import { useMatches } from '../lib/hooks';
-import { getRaceStats, getMapStats } from '../lib/analytics';
-import { WinRateChart } from '../components/charts/WinRateChart';
-import { MapStats } from '../components/charts/MapStats';
+import { StatsDashboard } from '../components/dashboard/StatsDashboard';
+import { MatchList } from '../components/matches/MatchList';
 import { Loader2, AlertCircle } from 'lucide-react';
 
 interface TournamentDashboardProps {
@@ -40,9 +38,6 @@ export function TournamentDashboard({ title, filterStr }: TournamentDashboardPro
         );
     }
 
-    const raceStats = getRaceStats(matches);
-    const mapStats = getMapStats(matches).slice(0, 10); // Top 10 maps
-
     return (
         <div className="space-y-8 animate-in fade-in duration-500">
             <div className="flex flex-col gap-2">
@@ -52,39 +47,12 @@ export function TournamentDashboard({ title, filterStr }: TournamentDashboardPro
                 </p>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2">
-                {/* Race Distribution Card */}
-                <div className="rounded-xl border bg-card text-card-foreground shadow p-6 bg-gray-900/40 backdrop-blur border-gray-800">
-                    <h3 className="font-semibold text-lg mb-4">Race Distribution</h3>
-                    <WinRateChart stats={raceStats} />
-                    <div className="grid grid-cols-4 gap-2 mt-4 text-center text-sm">
-                        <div>
-                            <span className="block font-bold text-red-500">{raceStats.Terran}</span>
-                            <span className="text-xs text-gray-500">Terran</span>
-                        </div>
-                        <div>
-                            <span className="block font-bold text-purple-500">{raceStats.Zerg}</span>
-                            <span className="text-xs text-gray-500">Zerg</span>
-                        </div>
-                        <div>
-                            <span className="block font-bold text-orange-500">{raceStats.Protoss}</span>
-                            <span className="text-xs text-gray-500">Protoss</span>
-                        </div>
-                        <div>
-                            <span className="block font-bold text-gray-400">{raceStats.Random}</span>
-                            <span className="text-xs text-gray-500">Random</span>
-                        </div>
-                    </div>
-                </div>
+            <StatsDashboard matches={matches} />
 
-                {/* Map Stats Card */}
-                <div className="rounded-xl border bg-card text-card-foreground shadow p-6 bg-gray-900/40 backdrop-blur border-gray-800">
-                    <h3 className="font-semibold text-lg mb-4">Top Maps Played</h3>
-                    <MapStats data={mapStats} />
-                </div>
+            <div className="space-y-4">
+                <h2 className="text-2xl font-bold tracking-tight text-gray-100">Match History</h2>
+                <MatchList matches={matches} />
             </div>
-
-            {/* Recent Matches List could go here */}
         </div>
     );
 }
